@@ -1,0 +1,448 @@
+/* Removes the spacing around the navbar */
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+/* Webpage partition */
+
+/* Shapes transition, starting coming from the bottom right. BEEG, then smol */
+
+#pop-up {
+  /* background-color: lightblue; solid color */
+  padding: 10px;
+  border-radius: 8px; /* rounded shape */
+}
+
+.shape-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 1000;
+  /* Optional: preserves layout space */
+}
+
+.shape {
+  width: 100%;
+  height: 100%;
+  background-color: skyblue;
+  border: solid;
+  border-color: whitesmoke;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(100%, 100%) scale(100);
+  animation: riseAndExpand 2s ease-out forwards;
+  box-shadow: 0 0 20px 10px rgba(240, 248, 255, 0.5);
+}
+
+
+@keyframes riseAndExpand {
+  0% {
+    transform: translate(100%, 100%) scale(100);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0) scale(10);
+    background-color: aliceblue;
+    opacity: 0;
+  }
+  50% {
+    transform: scale(2.5);
+    box-shadow: 0 0 25px 15px rgba(28, 36, 43, 0.7);
+    opacity: 1;
+  }
+}
+
+@keyframes expandFade {
+  0% {
+    transform: scale(2.5);
+    box-shadow: 0 0 0 0 rgba(240, 248, 255, 0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(5);
+    box-shadow: 0 0 25px 20px rgba(240, 248, 255, 0);
+    opacity: 0;
+  }
+}
+
+#learnMore {
+  display: flex;
+  justify-content: left;
+  padding-left: 7.5em;
+}
+
+#learnMoreButton {
+  background: linear-gradient(-45deg, beige, lightgray, aliceblue, lightblue);
+  color: black;
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  font-family: "Roboto";
+  border-radius: 5px;
+  cursor: pointer;
+  animation: gradientBG 5s ease infinite;
+
+  /* Default transition (hover out) */
+  transition:
+    border-color 0.6s ease-out,
+    transform 0.6s ease-out,
+    box-shadow 0.6s ease-out;
+  animation: slideIn 1s ease-out forwards;
+}
+
+#learnMoreButton:hover {
+  border: solid 2px;
+  border-color: black;
+
+  /* Override transitions on hover-in */
+  transition:
+    border-color 0.2s ease-in,
+    transform 0.2s ease-in,
+    box-shadow 0.2s ease-in;
+
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Header with added animation*/
+.title {
+  display: grid;
+  font-size: 1.5em;
+  font-family: 'Roboto';
+  color: #FAFAD2;
+  padding-left: 5em;
+  padding-top: 7em;
+  padding-bottom: 1em;
+}
+
+.slideIn {
+  animation: slideIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+/* Delay for the second heading */
+.delayed { 
+  animation-delay: 0.5s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Gradient background (still on testing) */
+#index {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, lightblue, aliceblue, lightgray, beige);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG  {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 3 boxes inside the navbar */
+#contact {
+    background-color: gray;
+}
+
+#about {
+    background-color: pink;
+}
+
+.topnav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 1000; /* ensure it's on top of other content */
+}
+
+/* This is for the navbar at the top */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: 'Roboto';
+  font-size: 17px;
+}
+
+/* The tiles changes color if you hover over them*/
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Highlights the current box for navbar*/
+.topnav a.active {
+  background-color: #6592ba;
+  color: white;
+}
+
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  padding-top: 60px; /* match your navbar height */
+}
+
+.section {
+  height: 100vh;
+  /* padding: 20px; */
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden; /* Prevent gradient from spilling */
+}
+
+/* Feather at the top */
+.section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 80px; /* Feather height */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Added feather effects for the upper and bottom parts of the section */
+.section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80px; /* Still on testing, adjusts the height of the feather. */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.one { 
+  background: linear-gradient(-45deg, #182d3a, #223d4b, #16181a, #0a171c);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+}
+
+.two {
+  background: linear-gradient(-45deg, #142530, #1c3744, #131516, #081115);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite
+}
+
+.three { 
+  background: linear-gradient(-45deg, #0c171e, #13232b, #0a0b0c, #03080a);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+}
+
+@keyframes convergeAndExitRight {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+  40% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(0);
+    opacity: 1; /* hold in center */
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}
+
+/* Right text: slides from right → center → left */
+@keyframes convergeAndExitLeft {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  40% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(0);
+    opacity: 1; /* hold in center */
+  }
+  100% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 30px rgba(173, 216, 230, 0.4),
+      0 0 60px rgba(173, 216, 230, 0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 50px rgba(173, 216, 230, 0.8),
+      0 0 100px rgba(173, 216, 230, 0.4);
+  }
+}
+
+.aboutMe li {
+  padding: 1em; 
+  /* Checkmark, still need to work on this one. */
+}
+
+/* For JS functions */
+
+#aboutMeDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: none;
+  font-family: 'Roboto';
+  text-shadow: 2px 2px 4px black;
+  perspective: 1000px;
+}
+
+.aboutMeContent {
+  display: flex;
+  align-items: flex-start; /* prevents paragraph stretching */
+  gap: 2.5rem;
+  max-width: 900px;
+  align-items: flex-start; /* 🔑 MOST IMPORTANT LINE */
+  opacity: 0;
+  transform: scale(1.05); /* slightly zoomed out */
+  transition: opacity 2s ease, transform 2s ease;
+  position: absolute; /* stays behind the big text */
+  z-index: 0;
+  text-align: center;
+  color: #d8ecff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.aboutMeContent > div {
+  display: flex;
+  align-items: flex-start;
+}
+
+.aboutMeContent p {
+  text-align: left;
+  margin: 0;
+}
+
+.aboutMeContent img {
+  height: 320px;        /* match paragraph height visually */
+  width: auto;
+  flex-shrink: 0;       /* prevents squeezing */
+}
+
+.aboutMeHeader1,
+.aboutMeHeader2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: clamp(5rem, 10vw, 12rem); /* responsive but capped */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #d8ecff;
+  text-shadow:
+    0 0 25px rgba(173, 216, 230, 0.4),
+    0 0 50px rgba(173, 216, 230, 0.25),
+    0 0 80px rgba(0, 191, 255, 0.2);
+  opacity: 0;
+  margin: 0;
+  line-height: 0.85; /* keeps them close together */
+  position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+}
+
+.resumeHeader {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: none;
+}
+
+.F-block {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: none;
+}
+ 
+.topicHeader.visible {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+/* When visible */
+.aboutMeHeader1.visible {
+  animation:
+    textGlow 5s ease-in-out infinite,
+    convergeAndExitRight 5s ease-in-out forwards;
+}
+
+.aboutMeHeader2.visible {
+  animation:
+    textGlow 5s ease-in-out infinite,
+    convergeAndExitLeft 5s ease-in-out forwards;
+}
+
+/* The content slides forward after text exits */
+.aboutMeContent {
+  opacity: 0;
+  transform: translateZ(-200px);
+  transition: opacity 2s ease, transform 2s ease;
+}
+
+.aboutMeContent.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.resumeHeader.visible {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.resume-block.visible {
+  animation: slideInLeft 0.8s ease-out forwards;
+}

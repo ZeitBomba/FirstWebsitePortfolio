@@ -1,0 +1,46 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="test_style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div class="container">
+      <img class="wuthering-waves" src="images/Cartethyia.jpg" alt="Wuthering Waves">
+    </div>
+  </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clickable Image Video Popup</title>
+  <link rel="stylesheet" href="test_style.css">
+</head>
+<body>
+
+  <!-- Clickable Image -->
+  <div class="video-thumbnail">
+    <img src="thumbnail.jpg" alt="Play Video" id="openVideo">
+  </div>
+
+  <!-- Video Popup Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-content">
+      <span class="close-btn" id="closeVideo">&times;</span>
+      <video controls id="popupVideo">
+        <source src="sample.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

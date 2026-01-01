@@ -1,0 +1,64 @@
+.three div h2 {
+    text-align: center;
+    padding-top: 2em;
+    font-size: 2em;
+    font-family: "Roboto";
+    color: white;
+}
+
+/* Gap is applied to the children of a flexbox or grid container, creating space between them.
+While margin is applied to an element itself, creating space outside its border. */
+
+.cards {
+    display: flex;
+    justify-content: space-evenly; /* even spacing between all cards */
+    align-items: flex-start;       /* keeps them aligned at the top */
+    padding: 2rem;                 /* inner spacing for the container */
+    gap: 2rem;                     /* small gap between cards */
+    flex-wrap: wrap;               /* allows cards to wrap on small screens */
+}
+
+/* initial hidden state */
+.fade-item {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-item p {
+  text-align: left;
+}
+
+/* visible state */
+.fade-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card img {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.card:hover img {
+  transform: scale(2);
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.25));
+}
+
+
+.cards div {
+    flex: 1 1 250px;               /* flexible width: grow, shrink, min size */
+    max-width: 300px;              /* prevents cards from stretching too wide */
+    background-color: #f1f1f1;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    cursor: pointer;
+}
